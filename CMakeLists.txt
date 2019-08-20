@@ -4,7 +4,7 @@
 # @filename: design_pattern
 # @author: aliben.develop@gmail.com
 # @create_date: 2019-08-04 19:25:51
-# @last_modified_date: NO_LAST_MODIFIED_DATE
+# @last_modified_date: 2019-08-20 14:29:11
 # @description: TODO
 #---****************************************************************---
 
@@ -74,8 +74,6 @@ project(design_pattern)
     ${CMAKE_THREAD_LIBS_INIT})
     ADD_SUBDIRECTORY(test)
   ENDIF()
-  find_package(OpenCV)
-  find_package(Eigen3)
 
 # Set&Add INCLUDE PATH
   # Example: SET ( VPATH_NAME PATH )
@@ -83,8 +81,6 @@ project(design_pattern)
   INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
   INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/build/include)
   INCLUDE_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/include)
-  INCLUDE_DIRECTORIES(${OPENCV_INCLUDE_DIRS})
-  INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIRS})
 
 # Set&Add LIB PATH/LINKING_DIRECTORIES
   # Example: LINK_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/lib)
@@ -93,7 +89,6 @@ project(design_pattern)
 
   SET( THIRD_PARTY_LIBS
     ${THIRD_PARTY_LIBS}
-    ${OpenCV_LIBS}
   )
 
 
