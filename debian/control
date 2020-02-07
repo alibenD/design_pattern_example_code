@@ -1,0 +1,15 @@
+Source: design-pattern
+Section: utils
+Priority: optional
+Maintainer: Aliben <aliben.develop@gmail.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+Homepage: https://github.com
+Vcs-Git: https://github.com/alibenD/design_pattern
+Vcs-Browser: https://github.com/alibenD/design_pattern.git
+
+Package: design-pattern
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: a repo with cmake building system
+ design_pattern example code
