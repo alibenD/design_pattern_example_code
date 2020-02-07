@@ -4,7 +4,7 @@
 # @filename: design_pattern
 # @author: aliben.develop@gmail.com
 # @create_date: 2019-08-04 19:25:51
-# @last_modified_date: 2019-08-20 14:29:11
+# @last_modified_date: 2020-02-07 20:42:28
 # @description: TODO
 #---****************************************************************---
 
@@ -13,6 +13,7 @@ cmake_minimum_required(VERSION 3.10)
 
 #project name
 project(design_pattern)
+#SET( CMAKE_INSTALL_PREFIX "$ENV{HOME}/install_deb")
 
 # CMake Build System Default Setup
   MESSAGE( STATUS "Project:  design_pattern" )
@@ -24,11 +25,11 @@ project(design_pattern)
     ADD_DEFINITIONS(-DNDEBUG)
   ENDIF()
 
-  OPTION(BUILD_GTESTS "Build google test cases" ON)
+  OPTION(BUILD_GTESTS "Build google test cases" OFF)
 
   SET(CMAKE_VERBOSE_MAKEFILE OFF)
   SET(CMAKE_CXX_STANDARD 11)
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Wno-unused-private-field -Wno-unused-parameter -Wno-unused-variable -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Wno-unused-private-field -Wno-unused-parameter -Wno-unused-variable")
   #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
   # Cross-platform check
   IF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -91,8 +92,16 @@ project(design_pattern)
     ${THIRD_PARTY_LIBS}
   )
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Set Subdir(src)
+  INSTALL(DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    FILES_MATCHING PATTERN "*.hh"
+    )
+
   ADD_SUBDIRECTORY(src)
   ADD_SUBDIRECTORY(examples)
 

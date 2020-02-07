@@ -4,7 +4,7 @@
 # @filename: design_pattern
 # @author: aliben.develop@gmail.com
 # @create_date: 2019-08-04 19:25:51
-# @last_modified_date: NO_LAST_MODIFIED_DATE
+# @last_modified_date: 2020-02-07 16:30:26
 # @description: TODO
 #---****************************************************************---
 
@@ -16,4 +16,5 @@ FOREACH(EXAMPLE ${EXAMPLES})
   TARGET_LINK_LIBRARIES(${MY_TARGET}
           design_pattern
           ${THIRD_PARTY_LIBS})
+        INSTALL(TARGETS ${MY_TARGET} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 ENDFOREACH()
