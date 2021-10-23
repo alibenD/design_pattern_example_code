@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-07 08:42:57
-  * @last_modified_date: 2019-08-07 08:58:09
+  * @last_modified_date: 2021-10-23 20:59:30
   * @brief: TODO
   * @details: TODO
   */
@@ -16,12 +16,12 @@
 //CODE
 int main()
 {
-  Command* com1 = new ConcreteCommand1("ARG#1...");
-  Command* com2 = new ConcreteCommand2("ARG#2***");
+  std::unique_ptr<Command> com1 = std::make_unique<ConcreteCommand1>("ARG#1...");
+  std::unique_ptr<Command> com2 = std::make_unique<ConcreteCommand2>("ARG#2***");
   MacroCommand macro_com;
 
-  macro_com.addCommand(com1);
-  macro_com.addCommand(com2);
+  macro_com.addCommand(std::move(com1));
+  macro_com.addCommand(std::move(com2));
 
   macro_com.execute();
 }

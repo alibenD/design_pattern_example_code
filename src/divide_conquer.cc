@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 15:55:10
-  * @last_modified_date: 2019-08-05 16:08:45
+  * @last_modified_date: 2021-10-23 21:06:12
   * @brief: TODO
   * @details: TODO
   */
@@ -39,7 +39,7 @@ void ExamplerDC::printDebug()
   }
 }
 
-void ExamplerDC::addShape(Shape* new_shape)
+void ExamplerDC::addShape(std::shared_ptr<Shape> new_shape)
 {
   shape_vectors_.push_back(new_shape);
 }

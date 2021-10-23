@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 09:57:00
-  * @last_modified_date: 2019-08-06 12:12:26
+  * @last_modified_date: 2021-10-23 21:08:30
   * @brief: TODO
   * @details: TODO
   */
@@ -17,7 +17,7 @@
 //CODE
 void ExamplerFactory::Run()
 {
-  ISplitter* ptr_splitter = ptr_factory_->CreateSplitter();
+  std::shared_ptr<ISplitter> ptr_splitter = ptr_factory_->CreateSplitter();
   ptr_splitter->split();
 }
 
@@ -36,17 +36,17 @@ void VideoSplitter::split()
   std::cout << "VideoSplitter" << std::endl;
 }
 
-ISplitter* BinarySplitterFactory::CreateSplitter()
+std::shared_ptr<ISplitter> BinarySplitterFactory::CreateSplitter()
 {
-  return new BinarySplitter();
+  return std::make_shared<BinarySplitter>();
 }
 
-ISplitter* TxtSplitterFactory::CreateSplitter()
+std::shared_ptr<ISplitter> TxtSplitterFactory::CreateSplitter()
 {
-  return new TxtSplitter();
+  return std::make_shared<TxtSplitter>();
 }
 
-ISplitter* VideoSplitterFactory::CreateSplitter()
+std::shared_ptr<ISplitter> VideoSplitterFactory::CreateSplitter()
 {
-  return new VideoSplitter();
+  return std::make_shared<VideoSplitter>();
 }

@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 09:57:00
-  * @last_modified_date: 2019-08-06 12:15:48
+  * @last_modified_date: 2021-10-23 21:08:04
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 /*
@@ -25,7 +26,7 @@ class ISplitter;
 class SplitterFactory
 {
   public:
-    virtual ISplitter* CreateSplitter() = 0;
+    virtual std::shared_ptr<ISplitter> CreateSplitter() = 0;
     virtual ~SplitterFactory() = default;
 };
 
@@ -60,21 +61,21 @@ class VideoSplitter : public ISplitter
 class BinarySplitterFactory : public SplitterFactory
 {
   public:
-    virtual ISplitter* CreateSplitter() override;
+    virtual std::shared_ptr<ISplitter> CreateSplitter() override;
     virtual ~BinarySplitterFactory() = default;
 };
 
 class TxtSplitterFactory : public SplitterFactory
 {
   public:
-    virtual ISplitter* CreateSplitter() override;
+    virtual std::shared_ptr<ISplitter> CreateSplitter() override;
     virtual ~TxtSplitterFactory() = default;
 };
 
 class VideoSplitterFactory : public SplitterFactory
 {
   public:
-    virtual ISplitter* CreateSplitter() override;
+    virtual std::shared_ptr<ISplitter> CreateSplitter() override;
     virtual ~VideoSplitterFactory() = default;
 };
 
@@ -83,10 +84,10 @@ class VideoSplitterFactory : public SplitterFactory
 class ExamplerFactory
 {
   public:
-    ExamplerFactory(SplitterFactory* factory){this->ptr_factory_ = factory;};
+    ExamplerFactory(std::shared_ptr<SplitterFactory> factory){this->ptr_factory_ = factory;};
     void Run();
 
   private:
-    SplitterFactory* ptr_factory_;
+    std::shared_ptr<SplitterFactory> ptr_factory_;
 };
 #endif // __FACTORY_METHOD_HH__

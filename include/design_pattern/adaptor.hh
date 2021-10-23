@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 18:37:35
-  * @last_modified_date: 2019-08-06 18:56:53
+  * @last_modified_date: 2021-10-23 20:49:03
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 
@@ -43,11 +44,11 @@ class OldClass : public IAdaptee
 class Adapter : public ITarget
 {
   public:
-    Adapter(IAdaptee* ptr_adaptee){ this->ptr_adaptee_ = ptr_adaptee; }
+    Adapter(std::unique_ptr<IAdaptee> ptr_adaptee): ptr_adaptee_(std::move(ptr_adaptee)){}
     virtual void process() override;
     virtual ~Adapter() = default;
 
   private:
-    IAdaptee* ptr_adaptee_;
+    std::unique_ptr<IAdaptee> ptr_adaptee_;
 };
 #endif // __ADAPTOR_HH__

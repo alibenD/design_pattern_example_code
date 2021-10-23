@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 22:57:26
-  * @last_modified_date: 2019-08-05 23:07:49
+  * @last_modified_date: 2021-10-23 21:04:42
   * @brief: TODO
   * @details: TODO
   */
@@ -17,19 +17,19 @@
 //CODE
 int main()
 {
-  Stream* file_stream = new FileStream();
-  Stream* network_stream = new NetworkStream();
-  Stream* memory_stream = new MemoryStream();
+  std::shared_ptr<Stream> file_stream = std::make_shared<FileStream>();
+  std::shared_ptr<Stream> network_stream = std::make_shared<NetworkStream>();
+  std::shared_ptr<Stream> memory_stream = std::make_shared<MemoryStream>();
 
-  Stream* buffer_file_stream = new BufferStream(file_stream);
-  Stream* buffer_network_stream = new BufferStream(network_stream);
-  Stream* buffer_memory_stream = new BufferStream(memory_stream);
+  std::shared_ptr<Stream> buffer_file_stream = std::make_shared<BufferStream>(file_stream);
+  std::shared_ptr<Stream> buffer_network_stream = std::make_shared<BufferStream>(network_stream);
+  std::shared_ptr<Stream> buffer_memory_stream = std::make_shared<BufferStream>(memory_stream);
 
-  Stream* cryto_file_stream = new CrytoStream(file_stream);
-  Stream* cryto_network_stream = new CrytoStream(network_stream);
-  Stream* cryto_memory_stream = new CrytoStream(memory_stream);
+  std::shared_ptr<Stream> cryto_file_stream = std::make_shared<CrytoStream>(file_stream);
+  std::shared_ptr<Stream> cryto_network_stream = std::make_shared<CrytoStream>(network_stream);
+  std::shared_ptr<Stream> cryto_memory_stream = std::make_shared<CrytoStream>(memory_stream);
 
-  Stream* cryto_buffer_file_stream = new CrytoStream(buffer_file_stream);
+  std::shared_ptr<Stream> cryto_buffer_file_stream = std::make_shared<CrytoStream>(buffer_file_stream);
 
   int num=5;
   file_stream->Read(num);

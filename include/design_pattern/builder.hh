@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 14:19:28
-  * @last_modified_date: 2019-08-06 15:41:09
+  * @last_modified_date: 2021-10-23 20:56:18
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 
@@ -52,12 +53,12 @@ class IronHouse : public House
 class HouseBuilder
 {
   public:
-    House* GetHouse(){return ptr_house_;};
+    std::shared_ptr<House> GetHouse(){return ptr_house_;};
     void Init();
     virtual ~HouseBuilder() = default;
 
   protected:
-    House* ptr_house_;
+    std::shared_ptr<House> ptr_house_;
     virtual void BuildPart1() = 0;
     virtual void BuildPart2() = 0;
     virtual void BuildPart3() = 0;
@@ -68,7 +69,7 @@ class HouseBuilder
 class StoneHouseBuilder : public HouseBuilder
 {
   public:
-    StoneHouseBuilder() { ptr_house_ = new StoneHouse(); };
+    StoneHouseBuilder() { ptr_house_ = std::make_shared<StoneHouse>(); };
     virtual ~StoneHouseBuilder() = default;
   protected:
     virtual void BuildPart1() override;
@@ -81,7 +82,7 @@ class StoneHouseBuilder : public HouseBuilder
 class IronHouseBuilder : public HouseBuilder
 {
   public:
-    IronHouseBuilder() { ptr_house_ = new IronHouse(); };
+    IronHouseBuilder() { ptr_house_ = std::make_shared<IronHouse>(); };
     virtual ~IronHouseBuilder() = default;
   protected:
     virtual void BuildPart1() override;
@@ -94,12 +95,12 @@ class IronHouseBuilder : public HouseBuilder
 class HouseDirector
 {
   public:
-    HouseDirector(HouseBuilder* house_builder)
+    HouseDirector(std::shared_ptr<HouseBuilder> house_builder)
     {
       this->ptr_house_builder_ = house_builder;
     }
-    House* Construct();
+    std::shared_ptr<House> Construct();
   private:
-    HouseBuilder* ptr_house_builder_;
+    std::shared_ptr<HouseBuilder> ptr_house_builder_;
 };
 #endif // __BUIDLER_HH__

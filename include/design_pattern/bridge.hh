@@ -7,13 +7,14 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 08:10:24
-  * @last_modified_date: 2019-08-06 09:54:23
+  * @last_modified_date: 2021-10-23 20:53:39
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
 #include <string>
+#include <memory>
 
 // Declaration
 class MessagerImpl
@@ -50,7 +51,7 @@ class Messager
 {
   public:
     // Core Functions regarding bussiness
-    Messager(MessagerImpl* messager_impl) : ptr_message_impl_(messager_impl){};
+    Messager(std::unique_ptr<MessagerImpl> messager_impl) : ptr_message_impl_(std::move(messager_impl)){};
     virtual void Login() = 0;
     virtual void SendMessage() = 0;
     virtual void SendPicture() = 0;
@@ -63,14 +64,14 @@ class Messager
     /* virtual void WriteText() = 0; */
     /* virtual void Connect() = 0; */
   protected:
-    MessagerImpl* ptr_message_impl_;
+    std::unique_ptr<MessagerImpl> ptr_message_impl_;
 };
 
 
 class MessagerLite : public Messager
 {
   public:
-    MessagerLite(MessagerImpl* messager_impl) : Messager(messager_impl){};
+    MessagerLite(std::unique_ptr<MessagerImpl> messager_impl) : Messager(std::move(messager_impl)){};
     virtual ~MessagerLite() = default;
 
     virtual void Login() override;
@@ -83,7 +84,7 @@ class MessagerLite : public Messager
 class MessagerPerfect : public Messager
 {
   public:
-    MessagerPerfect(MessagerImpl* messager_impl) : Messager(messager_impl){};
+    MessagerPerfect(std::unique_ptr<MessagerImpl> messager_impl) : Messager(std::move(messager_impl)){};
     virtual ~MessagerPerfect() = default;
 
     virtual void Login() override;

@@ -4,7 +4,7 @@
 # @filename: design_pattern
 # @author: aliben.develop@gmail.com
 # @create_date: 2019-08-04 19:25:51
-# @last_modified_date: 2020-02-07 20:42:28
+# @last_modified_date: 2021-10-23 20:45:31
 # @description: TODO
 #---****************************************************************---
 
@@ -28,7 +28,7 @@ project(design_pattern)
   OPTION(BUILD_GTESTS "Build google test cases" OFF)
 
   SET(CMAKE_VERBOSE_MAKEFILE OFF)
-  SET(CMAKE_CXX_STANDARD 11)
+  SET(CMAKE_CXX_STANDARD 17)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Wno-unused-private-field -Wno-unused-parameter -Wno-unused-variable")
   #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
   # Cross-platform check

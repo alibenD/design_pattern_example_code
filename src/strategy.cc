@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 17:01:39
-  * @last_modified_date: 2019-08-05 18:06:24
+  * @last_modified_date: 2021-10-23 21:27:26
   * @brief: TODO
   * @details: TODO
   */
@@ -28,14 +28,13 @@ double USTax::Calculate(const Context& context)
   return 0.0;
 }
 
-SalerOrder::SalerOrder(StrategyFactory* strategy_factory)
+SalerOrder::SalerOrder(std::shared_ptr<StrategyFactory> strategy_factory)
 {
   this->ptr_strategy_ = strategy_factory->NewStrategy();
 }
 
 SalerOrder::~SalerOrder()
 {
-  delete this->ptr_strategy_;
 }
 
 double SalerOrder::CalculateTax()

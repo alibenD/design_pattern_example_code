@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 12:18:53
-  * @last_modified_date: 2019-08-06 13:41:05
+  * @last_modified_date: 2021-10-23 20:46:49
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 class IDBConnection
@@ -81,34 +82,34 @@ class OracleDataReader : public IDataReader
 class IDBFactory
 {
   public:
-    virtual IDBConnection* CreateDBConnection() = 0;
-    virtual IDBCommand* CreateDBCommand() = 0;
-    virtual IDataReader* CreateDataReader() = 0;
+    virtual std::unique_ptr<IDBConnection> CreateDBConnection() = 0;
+    virtual std::unique_ptr<IDBCommand> CreateDBCommand() = 0;
+    virtual std::unique_ptr<IDataReader> CreateDataReader() = 0;
 };
 
 class SqlDBFactory : public IDBFactory
 {
   public:
-    virtual IDBConnection* CreateDBConnection();
-    virtual IDBCommand* CreateDBCommand();
-    virtual IDataReader* CreateDataReader();
+    virtual std::unique_ptr<IDBConnection> CreateDBConnection();
+    virtual std::unique_ptr<IDBCommand> CreateDBCommand();
+    virtual std::unique_ptr<IDataReader> CreateDataReader();
 };
 
 class OracleDBFactory : public IDBFactory
 {
   public:
-    virtual IDBConnection* CreateDBConnection();
-    virtual IDBCommand* CreateDBCommand();
-    virtual IDataReader* CreateDataReader();
+    virtual std::unique_ptr<IDBConnection> CreateDBConnection();
+    virtual std::unique_ptr<IDBCommand> CreateDBCommand();
+    virtual std::unique_ptr<IDataReader> CreateDataReader();
 };
 
 class ExamplerDB
 {
   public:
-    ExamplerDB(IDBFactory* db_factory){ this->ptr_db_factory_ = db_factory; };
+    ExamplerDB(std::unique_ptr<IDBFactory> db_factory) : ptr_db_factory_(std::move(db_factory)){}
     void Run();
 
   private:
-    IDBFactory* ptr_db_factory_;
+    std::unique_ptr<IDBFactory> ptr_db_factory_;
 };
 #endif // __ABSTRACT_FACTORY_METHOD_HH__

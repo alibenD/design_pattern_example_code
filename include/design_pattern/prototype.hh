@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 13:47:18
-  * @last_modified_date: 2019-08-06 14:13:22
+  * @last_modified_date: 2021-10-23 21:10:13
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 /**
@@ -23,7 +24,7 @@ class ISplitterPrototype
 {
   public:
     virtual void split() = 0;
-    virtual ISplitterPrototype* Clone() = 0;
+    virtual std::shared_ptr<ISplitterPrototype> Clone() = 0;
     virtual ~ISplitterPrototype() = default;
 };
 
@@ -31,7 +32,7 @@ class BinarySplitterPrototype : public ISplitterPrototype
 {
   public:
     // Need a good copy constructor
-    virtual ISplitterPrototype* Clone() override;
+    virtual std::shared_ptr<ISplitterPrototype> Clone() override;
     virtual void split() override;
     virtual ~BinarySplitterPrototype(){};
 };
@@ -39,7 +40,7 @@ class BinarySplitterPrototype : public ISplitterPrototype
 class TxtSplitterPrototype : public ISplitterPrototype
 {
   public:
-    virtual ISplitterPrototype* Clone() override;
+    virtual std::shared_ptr<ISplitterPrototype> Clone() override;
     virtual void split() override;
     virtual ~TxtSplitterPrototype() = default;
 };
@@ -47,7 +48,7 @@ class TxtSplitterPrototype : public ISplitterPrototype
 class VideoSplitterPrototype : public ISplitterPrototype
 {
   public:
-    virtual ISplitterPrototype* Clone() override;
+    virtual std::shared_ptr<ISplitterPrototype> Clone() override;
     virtual void split() override;
     virtual ~VideoSplitterPrototype() = default;
 };
@@ -57,11 +58,11 @@ class VideoSplitterPrototype : public ISplitterPrototype
 class Exampler
 {
   public:
-    Exampler(ISplitterPrototype* prototype){this->ptr_prototype_ = prototype;};
+    Exampler(std::shared_ptr<ISplitterPrototype> prototype){this->ptr_prototype_ = prototype;};
     void Run();
 
   private:
-    ISplitterPrototype* ptr_prototype_;
+    std::shared_ptr<ISplitterPrototype> ptr_prototype_;
 };
 
 #endif // __PROTOTYPE_HH__

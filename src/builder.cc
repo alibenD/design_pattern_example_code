@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 14:19:28
-  * @last_modified_date: 2019-08-06 15:38:18
+  * @last_modified_date: 2021-10-23 20:57:23
   * @brief: TODO
   * @details: TODO
   */
@@ -137,7 +137,7 @@ void IronHouseBuilder::BuildPart5()
   std::cout << __func__ << ": IronHouseBuilder" << std::endl;
 }
 
-House* HouseDirector::Construct()
+std::shared_ptr<House> HouseDirector::Construct()
 {
   ptr_house_builder_->Init();
   return ptr_house_builder_->GetHouse();

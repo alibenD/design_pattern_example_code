@@ -7,13 +7,14 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 18:13:12
-  * @last_modified_date: 2019-08-05 22:09:38
+  * @last_modified_date: 2021-10-23 21:09:14
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
 #include <list>
+#include <memory>
 
 // Declaration
 
@@ -23,13 +24,13 @@ class Subject
 {
   public:
     Subject() = default;
-    void addObserver(ObserverBase* new_observer){observer_list.push_back(new_observer);};
-    //void removeObserver(ObserverBase* remove_obs){observer_list.erase(remove_obs);};
+    void addObserver(std::shared_ptr<ObserverBase> new_observer){observer_list.push_back(new_observer);};
+    //void removeObserver(std::shared_ptr<ObserverBase> remove_obs){observer_list.erase(remove_obs);};
     void run(int num);
     void Notify(int num);
 
   private:
-    std::list<ObserverBase*> observer_list;
+    std::list<std::shared_ptr<ObserverBase>> observer_list;
 };
 
 class ObserverBase

@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 12:18:33
-  * @last_modified_date: 2019-08-06 13:40:50
+  * @last_modified_date: 2021-10-23 20:47:19
   * @brief: TODO
   * @details: TODO
   */
@@ -13,18 +13,19 @@
 //INCLUDE
 #include <design_pattern/abstract_factory_method.hh>
 #include <iostream>
+#include <memory>
 
 //CODE
 int main()
 {
-  IDBFactory* ptr_sql_factory = new SqlDBFactory();
-  IDBFactory* ptr_oracle_factory = new OracleDBFactory();
+  std::unique_ptr<IDBFactory> ptr_sql_factory = std::make_unique<SqlDBFactory>();
+  std::unique_ptr<IDBFactory> ptr_oracle_factory = std::make_unique<OracleDBFactory>();
 
-  ExamplerDB example_sql(ptr_sql_factory);
+  ExamplerDB example_sql(std::move(ptr_sql_factory));
   example_sql.Run();
 
   std::cout << "========================" << std::endl;
-  ExamplerDB example_oracle(ptr_oracle_factory);
+  ExamplerDB example_oracle(std::move(ptr_oracle_factory));
   example_oracle.Run();
   return 0;
 }

@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 18:12:21
-  * @last_modified_date: 2019-08-05 22:11:43
+  * @last_modified_date: 2021-10-23 21:09:37
   * @brief: TODO
   * @details: TODO
   */
@@ -18,8 +18,8 @@
 int main()
 {
   Subject subj;
-  ObserverBase* obs_a = new ObserverA();
-  ObserverBase* obs_b = new ObserverB();
+  std::shared_ptr<ObserverBase> obs_a = std::make_shared<ObserverA>();
+  std::shared_ptr<ObserverBase> obs_b = std::make_shared<ObserverB>();
   subj.addObserver(obs_a);
   subj.addObserver(obs_b);
 

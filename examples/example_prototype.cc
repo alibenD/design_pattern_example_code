@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 10:06:24
-  * @last_modified_date: 2019-08-06 14:14:28
+  * @last_modified_date: 2021-10-23 21:10:40
   * @brief: TODO
   * @details: TODO
   */
@@ -17,9 +17,9 @@
 int main()
 {
 
-  ISplitterPrototype* bin_splitter = new BinarySplitterPrototype();
-  ISplitterPrototype* txt_splitter = new TxtSplitterPrototype();
-  ISplitterPrototype* video_splitter = new VideoSplitterPrototype();
+  std::shared_ptr<ISplitterPrototype> bin_splitter = std::make_shared<BinarySplitterPrototype>();
+  std::shared_ptr<ISplitterPrototype> txt_splitter = std::make_shared<TxtSplitterPrototype>();
+  std::shared_ptr<ISplitterPrototype> video_splitter = std::make_shared<VideoSplitterPrototype>();
   Exampler example_bin(bin_splitter);
   Exampler example_txt(txt_splitter);
   Exampler example_video(video_splitter);

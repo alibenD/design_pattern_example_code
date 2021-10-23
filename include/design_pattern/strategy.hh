@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 17:01:39
-  * @last_modified_date: 2019-08-05 18:11:46
+  * @last_modified_date: 2021-10-23 21:25:31
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 class TexStrategy;
@@ -47,17 +48,17 @@ class USTax : public TexStrategy
 class SalerOrder
 {
   public:
-    SalerOrder(StrategyFactory* strategy_factory);
+    SalerOrder(std::shared_ptr<StrategyFactory> strategy_factory);
     double CalculateTax();
     ~SalerOrder();
   private:
-    TexStrategy* ptr_strategy_;
+    std::shared_ptr<TexStrategy> ptr_strategy_;
 };
 
 class StrategyFactory
 {
   public:
     // return CNTax just for passing compile, there should be generate obj dynamicly according diff requirement rather than fixed CNTax obj
-    TexStrategy* NewStrategy(){return new CNTax();};
+    std::shared_ptr<TexStrategy> NewStrategy(){return std::make_shared<CNTax>();};
 };
 #endif // __STRATEGY_HH__

@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 16:36:30
-  * @last_modified_date: 2019-08-05 16:59:08
+  * @last_modified_date: 2021-10-23 21:26:29
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 /*
  * Find a point changing, then separate it.
  * IMPORTANT IDEA: Refactoring to Patterns, rather than using it at the beginning

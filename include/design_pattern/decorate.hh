@@ -7,12 +7,13 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-05 22:21:30
-  * @last_modified_date: 2019-08-05 22:53:31
+  * @last_modified_date: 2021-10-23 21:04:07
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
 
 // Header include
+#include <memory>
 
 // Declaration
 class Stream;
@@ -28,9 +29,9 @@ class Stream
 class DecoratorStream : public Stream
 {
   public:
-    DecoratorStream(Stream* stream) : ptr_stream_(stream){};
+    DecoratorStream(std::shared_ptr<Stream> stream) : ptr_stream_(stream){};
   protected:
-    Stream* ptr_stream_;
+    std::shared_ptr<Stream> ptr_stream_;
 };
 
 class FileStream : public Stream
@@ -60,7 +61,7 @@ class MemoryStream : public Stream
 class BufferStream : public DecoratorStream
 {
   public:
-    BufferStream(Stream* stream) : DecoratorStream(stream){};
+    BufferStream(std::shared_ptr<Stream> stream) : DecoratorStream(stream){};
     virtual void Read(int num);
     virtual void Write(int num);
     virtual void Seek(int num);
@@ -70,7 +71,7 @@ class BufferStream : public DecoratorStream
 class CrytoStream : public DecoratorStream
 {
   public:
-    CrytoStream(Stream* stream) : DecoratorStream(stream){};
+    CrytoStream(std::shared_ptr<Stream> stream) : DecoratorStream(stream){};
     virtual void Read(int num);
     virtual void Write(int num);
     virtual void Seek(int num);

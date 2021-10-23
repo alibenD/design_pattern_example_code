@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 21:32:48
-  * @last_modified_date: 2019-08-06 22:07:20
+  * @last_modified_date: 2021-10-23 21:29:59
   * @brief: TODO
   * @details: TODO
   */
@@ -15,33 +15,33 @@
 #include <iostream>
 
 //CODE
-NetworkState* OpenState::ptr_instance_ = nullptr;
-NetworkState* CloseState::ptr_instance_ = nullptr;
-NetworkState* ConnectState::ptr_instance_ = nullptr;
+std::shared_ptr<NetworkState> OpenState::ptr_instance_ = nullptr;
+std::shared_ptr<NetworkState> CloseState::ptr_instance_ = nullptr;
+std::shared_ptr<NetworkState> ConnectState::ptr_instance_ = nullptr;
 
-NetworkState* OpenState::getInstance()
+std::shared_ptr<NetworkState> OpenState::getInstance()
 {
   if(ptr_instance_ == nullptr)
   {
-    ptr_instance_ = new OpenState();
+    ptr_instance_ = std::make_shared<OpenState>();
   }
   return ptr_instance_;
 }
 
-NetworkState* CloseState::getInstance()
+std::shared_ptr<NetworkState> CloseState::getInstance()
 {
   if(ptr_instance_ == nullptr)
   {
-    ptr_instance_ = new CloseState();
+    ptr_instance_ = std::make_shared<CloseState>();
   }
   return ptr_instance_;
 }
 
-NetworkState* ConnectState::getInstance()
+std::shared_ptr<NetworkState> ConnectState::getInstance()
 {
   if(ptr_instance_ == nullptr)
   {
-    ptr_instance_ = new ConnectState();
+    ptr_instance_ = std::make_shared<ConnectState>();
   }
   return ptr_instance_;
 }

@@ -5,7 +5,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-06 21:56:38
-  * @last_modified_date: 2019-08-06 22:03:39
+  * @last_modified_date: 2021-10-23 21:31:05
   * @brief: TODO
   * @details: TODO
   */
@@ -16,7 +16,7 @@
 //CODE
 int main()
 {
-  NetworkState* ptr_network_state = OpenState::getInstance();
+  std::shared_ptr<NetworkState> ptr_network_state = OpenState::getInstance();
   NetworkProcessor network_processor(ptr_network_state);
   network_processor.Operation1();
   network_processor.Operation2();

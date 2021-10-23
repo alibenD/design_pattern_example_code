@@ -7,7 +7,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @create_date: 2019-08-07 08:29:03
-  * @last_modified_date: 2019-08-07 08:56:21
+  * @last_modified_date: 2021-10-23 20:59:52
   * @brief: TODO
   * @details: TODO
   *-----------------------------------------------*/
@@ -15,6 +15,7 @@
 // Header include
 #include <string>
 #include <vector>
+#include <memory>
 
 // Declaration
 class Command
@@ -51,10 +52,10 @@ class MacroCommand : public Command
 {
   public:
     virtual void execute() override;
-    void addCommand(Command* command);
+    void addCommand(std::unique_ptr<Command> command);
     virtual ~MacroCommand() = default;
 
   private:
-    std::vector<Command*> commands_;
+    std::vector<std::unique_ptr<Command>> commands_;
 };
 #endif // __COMMAND_HH__
